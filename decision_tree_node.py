@@ -21,8 +21,14 @@ class BinaryTreeNode(TreeNode):
     def right_child(self):
         return self.children[1]
 
-class DecisionTreeNode(BinaryTreeNode):
+class DecisionTreeNode(TreeNode):
 
     # Recursively walk through the tree
     def make_decision (self):
         pass
+
+    def add_child(self, node, value):
+        if value == True:
+            left_child = node
+        else:
+            right_child = node

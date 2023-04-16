@@ -6,7 +6,8 @@
 class TreeNode:
 
     def __init__(self):
-        self.children = []
+
+        self.child_nodes = []
 
 class BinaryTreeNode(TreeNode):
 
@@ -15,13 +16,20 @@ class BinaryTreeNode(TreeNode):
 
     @property
     def left_child(self):
-        return self.children[0]
+        return self.child_nodes[0]
 
     @property
     def right_child(self):
-        return self.children[1]
+        return self.child_nodes[1]
 
 class DecisionTreeNode(TreeNode):
+
+    def __init__(self):
+        self.test_value = None
+        self.action = None
+        self.test_attribute = None
+        self.child_nodes = {}
+
 
     # Recursively walk through the tree
     def make_decision (self):

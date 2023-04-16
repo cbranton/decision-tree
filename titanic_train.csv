@@ -1,4 +1,4 @@
-﻿pclass,survived,sex,age,sibsp,parch,embarked,boat,body
+﻿ticketclass,survived,sex,age,sibsp,parch,embarked,boat,body
 3,0,male,21 to 39,0,0,S,TRUE,FALSE
 2,0,male,21 to 39,0,0,S,TRUE,FALSE
 3,1,female,UNDER 21,0,0,Q,FALSE,FALSE

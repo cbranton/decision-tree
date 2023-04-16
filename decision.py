@@ -72,8 +72,7 @@ class DecisionTree(DecisionTreeNode):
         print ("Training complete")
         self.print()
 
-        # Test the tree using a data set
-
+    # Test the tree using a data set
     def test(self, test_set, attributes):
         correct = 0
         incorrect = 0
@@ -81,7 +80,7 @@ class DecisionTree(DecisionTreeNode):
         print("Testing", set_size, "examples")
 
         for example in test_set:
-            actual_result = example[self.ACTION_ATTRIBUTE]
+            actual_result = example[self.action_attribute]
             predicted_result = self.predict(example)
 
             if predicted_result == actual_result:

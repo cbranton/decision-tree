@@ -41,7 +41,7 @@ class DecisionTreeApp:
     # file_name is a string with valid path to the file
     # data_list is a list that will contain a dictionary in each entry
     def read_file(self, file_name, data_list):
-        print ("Reading File" + file_name)
+        print ("Reading File", file_name)
         with open(file_name) as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:

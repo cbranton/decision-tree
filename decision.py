@@ -57,8 +57,6 @@ class DecisionTree(DecisionTreeNode):
     def __init__(self):
         super(DecisionTree, self).__init__()
         self.action_attribute = None
-#        self.left_child = None
-#        self.right_child = None
 
     # Create a decision tree
     def train(self, training_set, attributes, action_attribute):
@@ -123,7 +121,7 @@ class DecisionTree(DecisionTreeNode):
 
             # set the decision node to this attribute
             decision_node.test_attribute = best_split_attribute
-            print("Splitting on", best_split_attribute)
+            # print("Splitting on", best_split_attribute)
 
             if best_split_attribute == None:
                 print("What the what?")
@@ -138,7 +136,7 @@ class DecisionTree(DecisionTreeNode):
             # each node should action = attr and
             # test_value = val
             for val, this_set in best_sets.bag.items():
-                print("Create child node for set " + val)
+                # print("Create child node for set " + val)
                 child = DecisionTreeNode()
                 attribute_value = val  # set[best_split_attribute]
                 child.test_value = val
@@ -155,26 +153,25 @@ class DecisionTree(DecisionTreeNode):
     # Calculate the information entropy of an example set
     def entropy(self, examples):
         example_count = len(examples)
-        actionTallies = {}
+        action_tallies = {}
 
         if example_count == 0:
             return 0
 
         for example in examples:
-            if example[self.action_attribute] in actionTallies.keys():
-                actionTallies[example[self.action_attribute]] += 1
+            if example[self.action_attribute] in action_tallies.keys():
+                action_tallies[example[self.action_attribute]] += 1
             else:
-                actionTallies[example[self.action_attribute]] = 1
+                action_tallies[example[self.action_attribute]] = 1
 
-        actionCount = len(actionTallies.keys())
-
-        if actionCount <= 1:
+        action_count = len(action_tallies.keys())
+        if action_count <= 1:
             return 0
 
         entropy = 0
 
         # Add in the contribution to entropy of each action
-        for action, number in actionTallies.items():
+        for action, number in action_tallies.items():
             proportion = number / example_count
             entropy -= proportion * math.log(proportion, 2)
         return entropy
@@ -249,7 +246,7 @@ class DecisionTree(DecisionTreeNode):
     def print(self):
         print ("Printing decision tree")
         node = self
-        self.printNode(node)
+        self.print_tree(node)
 
     def printNode(self, node):
         print (node.test_attribute, ":", node.test_value)
@@ -257,4 +254,11 @@ class DecisionTree(DecisionTreeNode):
             for val, child in node.child_nodes.items():
                 self.printNode (child)
 
-
+    def print_tree(self, node):
+        if node.test_attribute:
+            for child in node.child_nodes:
+                print(node.test_attribute, ":", node.child_nodes[child].test_value)
+                self.print_tree(node.child_nodes[child])
+        elif node.action:
+            print(self.action_attribute, ":", node.action)
+            return
